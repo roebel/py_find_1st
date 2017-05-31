@@ -117,6 +117,11 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.0.5 (2017-05-31) ###
+
+  * Fixed non ascii elements in README that led to problems with some
+    python configurations.
+
 ### Version 1.0.4 (2017-05-31) ###
 
   * Fixed setup.py problems:
