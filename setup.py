@@ -101,7 +101,7 @@ setup( name = "py_find_1st",
         long_description = read_long_descr(),
         license = "GPL",
         url = "http://github.com/roebel/py_find_1st",
-        downloadurl = "https://github.com/roebel/py_find_1st/archive/v1.0.3.tar.gz",
+        download_url = "https://github.com/roebel/py_find_1st/archive/v{0}.tar.gz".format(version),
         keywords = "numpy,extension,find",
         classifiers = [
             "Topic :: Software Development :: Libraries :: Python Modules",

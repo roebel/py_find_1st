@@ -117,6 +117,11 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.0.4 (2017-05-31) ###
+
+  * Fixed setup.py problems:
+  on the fly generation of LONG_DESCRPTION file.
+
 ### Version 1.0.3 (2017-05-31) ###
 
  * Moved to github

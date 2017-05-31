@@ -5,7 +5,7 @@ py\_find\_1st is a numpy extension that allows to find the first index
 into an array that validates a boolean condition that can consist of a
 comparison operator and a limit value.
 
-functionality
+Functionality
 -------------
 
 This extension solves the very frequent problem of finding first indices
@@ -148,6 +148,22 @@ Any comments a re welcome.
 
 Changes
 -------
+
+Version 1.0.4 (2017-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Fixed setup.py problems on the fly generation of LONG\_DESCRPTION
+   file.
+
+Version 1.0.3 (2017-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Moved to github
+
+Version 1.0.2 (2017-05-31)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Force using c++ compiler
 
 Version 1.0.1 (2017-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
