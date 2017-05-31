@@ -117,6 +117,10 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.0.3 (2017-05-31) ###
+
+ * Moved to github
+
 ### Version 1.0.2 (2017-05-31) ###
 
  * Force using c++ compiler
