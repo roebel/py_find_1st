@@ -8,46 +8,55 @@ enum cmp_op {
   cmp_smaller_eq = -1,
   cmp_equal      = 0,
   cmp_larger_eq  = 1,
-  cmp_larger     = 2
+  cmp_larger     = 2,
+  cmp_not_equal  = 3,
 };
 
 
-  
 template<class REAL>
+inline
 int find_1st_templ(REAL* x,  REAL limit, long size, cmp_op op) {
 
-  if (op == cmp_smaller) {
+  switch (op) {
+  case  cmp_smaller:
     for(long ii=0; ii <size; ++ ii){
       if (x[ii] < limit) 
         return ii;
     }
-  }
-  else if (op == cmp_smaller_eq) {
+    break;
+  case cmp_smaller_eq: 
     for(long ii=0; ii <size; ++ ii){
       if (x[ii] <= limit) 
         return ii;
     }
-  }
-  else if (op == cmp_equal) {
+    break;
+  case cmp_equal :
     for(long ii=0; ii <size; ++ ii){
       if (x[ii] == limit) 
         return ii;
     }
-  }
-  else if (op == cmp_larger_eq) {
+    break;
+  case cmp_larger_eq :
     for(long ii=0; ii <size; ++ ii){
       if (x[ii] >= limit) 
         return ii;
     }
-  }
-  else if (op == cmp_larger) {
+    break;
+  case cmp_larger :
     for(long ii=0; ii <size; ++ ii){
       if (x[ii] > limit)  
         return ii;
     }
-  }
-  else{
+    break;
+  case cmp_not_equal :
+    for(long ii=0; ii <size; ++ ii){
+      if (x[ii] != limit) 
+        return ii;
+    }
+    break;
+  default:
     return -2;
+    break;
   }
   return -1;
 }
@@ -167,9 +176,19 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
                          static_cast<int>(limit),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
+  case NPY_BOOL:
+    if((cmp_op(op) != cmp_equal) && (cmp_op(op) != cmp_not_equal)){
+      PyErr_SetString(PyExc_ValueError,
+                      "find_1st::Invalid cmparison operator for input data type bool, onnly cmp_equal and cmp_notequal are supported.");
+      return NULL;
+    }
+    ret = find_1st_templ(reinterpret_cast<npy_bool*>(input->data),
+                         static_cast<npy_bool>(limit),
+                         static_cast<long>(input->dimensions[0]), cmp_op(op));
+    break;
   default:
 PyErr_SetString(PyExc_ValueError,
-         "cc_find_1st::Input data type must be one of float64, float32, int64, or int32.");
+         "cc_find_1st::Input data type must be one of float64, float32, int64, int32, or bool.");
     return NULL;
   }
 

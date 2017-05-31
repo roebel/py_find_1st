@@ -2,7 +2,7 @@ all: build
 
 PYTHON=python
 
-build : Makefile
+build : Makefile utils_find_1st/find_1st.cpp
 	$(PYTHON) setup.py build_ext 
 
 cythonize : 

@@ -1,0 +1,11 @@
+py_find_1st Installation instructions
+
+Simply compile and install using your python interpreter as follows
+
+python setup.py build_ext
+python setup.py install
+
+or
+
+python setup.py install --user
+
