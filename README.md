@@ -66,10 +66,10 @@ Depending on the size of the   array and the number of matches the speed differe
 We can easily compare the runtime using the three lines
 
     In [6]: timeit ind = np.flatnonzero(rr < limit)[0]
-    1.69 µs ± 24.5 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    1.69 $\mu$s ± 24.5 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
     
     In [4]: timeit ind = utf1st.find_1st(rr < limit, True, utf1st.cmp_equal)
-    1.13 µs ± 18.9 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    1.13 $\mu$s ± 18.9 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
     
     In [5]: timeit ind = utf1st.find_1st(rr, limit, utf1st.cmp_smaller)
     270 ns ± 5.57 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
@@ -84,10 +84,10 @@ the overhead of np.flanonzero is dominating the costs as can be seen in the foll
 
     In [9]: limit = -1000.
     In [10]: timeit ind = np.flatnonzero(rr < limit)
-    1.56 µs ± 13.8 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    1.56 $\mu$s ± 13.8 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
     
     In [11]: timeit ind = utf1st.find_1st(rr<limit, True, utf1st.cmp_equal)
-    1.16 µs ± 7.07 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
+    1.16 $\mu$s ± 7.07 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
     
     In [12]: timeit ind = utf1st.find_1st(rr, limit, utf1st.cmp_smaller)
     314 ns ± 3.36 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
@@ -96,13 +96,13 @@ For a significantly larger array size costs become more comparable
 
     rr= np.random.randn(10000)
     In [13]: timeit ind = np.flatnonzero(rr < limit)
-    4.87 µs ± 101 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    4.87 $\mu$s ± 101 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
     
     In [14]: timeit ind = utf1st.find_1st(rr<limit, True, utf1st.cmp_equal)
-    8.95 µs ± 497 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    8.95 $\mu$s ± 497 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
     
     In [15]: timeit ind = utf1st.find_1st(rr, limit, utf1st.cmp_smaller)
-    4.4 µs ± 47.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    4.4 $\mu$s ± 47.9 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
 
 Which demonstrates that even in this case the find_1st extension is more efficient
 besides if the boolean intermediate array is used in line 14.
@@ -111,7 +111,7 @@ This result is a bit astonishing as the overhead involved in passing the boolean
 into the find_1st extension seems rather large compared to the simple boolean comparison  
 
     In [35]: timeit ind = rr < limit
-    3.31 µs ± 47.3 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
+    3.31 $\mu$s ± 47.3 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)
    
 The clarification of this remaining issue needs further investigation. Any comments a re welcome.
 
