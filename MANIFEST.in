@@ -1,4 +1,4 @@
+include README
 include *.md
-include ChangeLog
 include LONG_DESCR
 include ez_setup.py
