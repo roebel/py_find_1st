@@ -1,6 +1,6 @@
 from utils_find_1st.find_1st import find_1st
 
-version = (1,0,5)
+version = (1,0,6)
 
 cmp_smaller_eq = -2
 cmp_smaller    = -1

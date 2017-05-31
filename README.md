@@ -117,6 +117,10 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.0.6 (2017-05-31) ###
+
+  * Removed more non ascii elements in README.
+
 ### Version 1.0.5 (2017-05-31) ###
 
   * Fixed non ascii elements in README that led to problems with some
