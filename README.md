@@ -1,4 +1,4 @@
-#py_find_1st#
+# py_find_1st #
 
 py_find_1st  is a numpy extension that allows to find the first index into an array that
 validates a boolean condition that can consist of a comparison operator and a limit value.
@@ -125,7 +125,7 @@ The clarification of this remaining issue needs further investigation. Any comme
 
  * initial release
  
-## Copyright##
+## Copyright ##
 
 Copyright (C) 2017 IRCAM
 
@@ -133,7 +133,7 @@ Copyright (C) 2017 IRCAM
 
 GPL see file Copying.txt
 
-##Author##
+## Author ##
 
 Axel Roebel
 
