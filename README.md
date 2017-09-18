@@ -1,6 +1,6 @@
 # py_find_1st #
 
-py_find_1st  is a numpy extension that allows to find the first index into an array that
+py_find_1st  is a numpy extension that allows to find the first index into an 1D-array that
 validates a boolean condition that can consist of a comparison operator and a limit value.
 
 ## Functionality ##
@@ -116,6 +116,12 @@ into the find_1st extension seems rather large compared to the simple boolean co
 The clarification of this remaining issue needs further investigation. Any comments a re welcome.
 
 ## Changes ##
+
+### Version 1.1.0 (2017-09-18) ###
+
+  * fixed bug in cmp operator values that were not coherent on the python and C++ side
+  * support arbitrary strides for one dimensuional arrays
+  * Added test script
 
 ### Version 1.0.7 (2017-09-18) ###
 

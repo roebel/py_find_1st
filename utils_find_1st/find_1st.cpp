@@ -15,42 +15,43 @@ enum cmp_op {
 
 template<class REAL>
 inline
-int find_1st_templ(REAL* x,  REAL limit, long size, cmp_op op) {
+int find_1st_templ(REAL* x,  REAL limit, int stride, long size, cmp_op op) {
 
+  REAL* pp = x;
   switch (op) {
   case  cmp_smaller:
-    for(long ii=0; ii <size; ++ ii){
-      if (x[ii] < limit) 
+    for(long ii=0; ii <size; ++ii, pp += stride){
+      if (*pp < limit) 
         return ii;
     }
     break;
   case cmp_smaller_eq: 
-    for(long ii=0; ii <size; ++ ii){
-      if (x[ii] <= limit) 
+    for(long ii=0; ii <size; ++ii, pp += stride){
+      if (*pp <= limit) 
         return ii;
     }
     break;
   case cmp_equal :
-    for(long ii=0; ii <size; ++ ii){
-      if (x[ii] == limit) 
+    for(long ii=0; ii <size; ++ii, pp += stride){
+      if (*pp == limit) 
         return ii;
     }
     break;
   case cmp_larger_eq :
-    for(long ii=0; ii <size; ++ ii){
-      if (x[ii] >= limit) 
+    for(long ii=0; ii <size; ++ii, pp += stride){
+      if (*pp >= limit) 
         return ii;
     }
     break;
   case cmp_larger :
-    for(long ii=0; ii <size; ++ ii){
-      if (x[ii] > limit)  
+    for(long ii=0; ii <size; ++ii, pp += stride){
+      if (*pp > limit)  
         return ii;
     }
     break;
   case cmp_not_equal :
-    for(long ii=0; ii <size; ++ ii){
-      if (x[ii] != limit) 
+    for(long ii=0; ii <size; ++ii, pp += stride){
+      if (*pp != limit) 
         return ii;
     }
     break;
@@ -154,26 +155,28 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
          "cc_find_1st::Input array must be 1 dimensional.");
     return NULL;
   }
-  int type=PyArray_TYPE(input);
-  int ret = -1;
+  
+  int stride = PyArray_STRIDE(input, 0);
+  int type   = PyArray_TYPE(input);
+  int ret    = -1;
   switch(type) {
   case NPY_DOUBLE:
-    ret = find_1st_templ(reinterpret_cast<double*>(input->data),  static_cast<double>(limit),
-                         static_cast<long>(input->dimensions[0]), cmp_op(op));
+    ret = find_1st_templ(reinterpret_cast<double*>(PyArray_DATA(input)), static_cast<double>(limit),
+                         stride/sizeof(double), static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
   case NPY_FLOAT:
-    ret = find_1st_templ(reinterpret_cast<float*>(input->data),
-                         static_cast<float>(limit),
+    ret = find_1st_templ(reinterpret_cast<float*>(PyArray_DATA(input)), 
+                         static_cast<float>(limit), stride/sizeof(float),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
   case NPY_LONG:
-    ret = find_1st_templ(reinterpret_cast<long*>(input->data),
-                         static_cast<long>(limit),
+    ret = find_1st_templ(reinterpret_cast<long*>(PyArray_DATA(input)),
+                         static_cast<long>(limit), stride/sizeof(long),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
   case NPY_INT:
-    ret = find_1st_templ(reinterpret_cast<int*>(input->data),
-                         static_cast<int>(limit),
+    ret = find_1st_templ(reinterpret_cast<int*>(PyArray_DATA(input)),
+                         static_cast<int>(limit), stride/sizeof(int),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
   case NPY_BOOL:
@@ -182,8 +185,8 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
                       "find_1st::Invalid cmparison operator for input data type bool, onnly cmp_equal and cmp_notequal are supported.");
       return NULL;
     }
-    ret = find_1st_templ(reinterpret_cast<npy_bool*>(input->data),
-                         static_cast<npy_bool>(limit),
+    ret = find_1st_templ(reinterpret_cast<npy_bool*>(PyArray_DATA(input)),
+                         static_cast<npy_bool>(limit), stride/sizeof(npy_bool),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
   default:
