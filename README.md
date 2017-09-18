@@ -117,6 +117,10 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.0.7 (2017-09-18) ###
+
+  * Changed compiler test to hopefully work for MSVC under windows.
+
 ### Version 1.0.6 (2017-05-31) ###
 
   * Removed more non ascii elements in README.
