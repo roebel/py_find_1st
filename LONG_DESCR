@@ -2,8 +2,8 @@ py\_find\_1st
 =============
 
 py\_find\_1st is a numpy extension that allows to find the first index
-into an array that validates a boolean condition that can consist of a
-comparison operator and a limit value.
+into an 1D-array that validates a boolean condition that can consist of
+a comparison operator and a limit value.
 
 Functionality
 -------------
@@ -79,6 +79,11 @@ is found.
 Depending on the size of the array and the number of matches the speed
 difference can be very significant (easily > factor 10)
 
+test
+----
+
+run test/test\_find\_1st.py which should display "all tests passed!"
+
 Benchmarking
 ~~~~~~~~~~~~
 
@@ -144,10 +149,23 @@ large compared to the simple boolean comparison
     3.31 $\mu$s $\pm$ 47.3 ns per loop (mean $\pm$ std. dev. of 7 runs, 100000 loops each)
 
 The clarification of this remaining issue needs further investigation.
-Any comments a re welcome.
+Any comments are welcome.
 
 Changes
 -------
+
+Version 1.1.0 (2017-09-18)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  fixed bug in cmp operator values that were not coherent on the python
+   and C++ side
+-  support arbitrary strides for one dimensuional arrays
+-  Added test script
+
+Version 1.0.7 (2017-09-18)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Changed compiler test to hopefully work for MSVC under windows.
 
 Version 1.0.6 (2017-05-31)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
