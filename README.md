@@ -61,6 +61,11 @@ while find_1st only produces a scalar result and only needs to compare the array
 Depending on the size of the   array and the number of matches the speed difference can be very significant
 (easily > factor 10)
 
+
+## test ##
+
+run test/test_find_1st.py which should display "all tests passed!"
+
 ### Benchmarking ###
 
 We can easily compare the runtime using the three lines
@@ -113,7 +118,7 @@ into the find_1st extension seems rather large compared to the simple boolean co
     In [35]: timeit ind = rr < limit
     3.31 $\mu$s $\pm$ 47.3 ns per loop (mean $\pm$ std. dev. of 7 runs, 100000 loops each)
    
-The clarification of this remaining issue needs further investigation. Any comments a re welcome.
+The clarification of this remaining issue needs further investigation. Any comments are welcome.
 
 ## Changes ##
 
