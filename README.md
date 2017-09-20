@@ -122,6 +122,11 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.1.1 (2017-09-19) ###
+
+  * Use NPY_INT64/NPY_INT32 instead of NPY_INT/NPY_LONG
+    such that the test does not rely on the compiler specific int sizes.
+
 ### Version 1.1.0 (2017-09-18) ###
 
   * fixed bug in cmp operator values that were not coherent on the python and C++ side

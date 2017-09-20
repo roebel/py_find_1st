@@ -169,12 +169,12 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
                          static_cast<float>(limit), stride/sizeof(float),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
-  case NPY_LONG:
+  case NPY_INT64:
     ret = find_1st_templ(reinterpret_cast<long*>(PyArray_DATA(input)),
                          static_cast<long>(limit), stride/sizeof(long),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));
     break;
-  case NPY_INT:
+  case NPY_INT32:
     ret = find_1st_templ(reinterpret_cast<int*>(PyArray_DATA(input)),
                          static_cast<int>(limit), stride/sizeof(int),
                          static_cast<long>(input->dimensions[0]), cmp_op(op));

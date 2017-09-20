@@ -154,6 +154,12 @@ Any comments are welcome.
 Changes
 -------
 
+Version 1.1.1 (2017-09-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Use NPY\_INT64/NPY\_INT32 instead of NPY\_INT/NPY\_LONG such that the
+   test does not rely on the compiler specific int sizes.
+
 Version 1.1.0 (2017-09-18)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
