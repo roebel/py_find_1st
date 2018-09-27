@@ -154,6 +154,12 @@ Any comments are welcome.
 Changes
 -------
 
+Version 1.1.2 (2017-09-19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Removed ez\_setup.py that seems to be no longer maintained by
+   setuptools maintainers.
+
 Version 1.1.1 (2017-09-19)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
