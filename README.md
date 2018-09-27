@@ -122,6 +122,10 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.1.2 (2017-09-19) ###
+
+  * Removed ez_setup.py that seems to be no longer maintained by setuptools maintainers.
+    
 ### Version 1.1.1 (2017-09-19) ###
 
   * Use NPY_INT64/NPY_INT32 instead of NPY_INT/NPY_LONG

@@ -1,19 +1,16 @@
 #! /usr/bin/env python
 from __future__ import print_function
-from ez_setup import use_setuptools
-use_setuptools()
 
 from setuptools import setup
+#from distutils.core import setup
 from distutils.extension import Extension
 from distutils.command.build_ext import build_ext
 from distutils.command.sdist import sdist 
 
 import numpy as np
 import os
-import sys
 import re
 import subprocess
-import errno
 
 def compiler_is_clang(comp) :
     print("check for clang compiler ...", end=' ')

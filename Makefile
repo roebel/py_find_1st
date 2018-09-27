@@ -8,10 +8,10 @@ build : Makefile utils_find_1st/find_1st.cpp
 cythonize : 
 
 install:
-	$(PYTHON) setup.py install
+	pip install .
 
 install-user:
-	$(PYTHON) setup.py install --user
+	pip install --user .
 
 clean:
 	$(PYTHON) setup.py clean -a
