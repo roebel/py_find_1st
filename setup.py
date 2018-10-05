@@ -39,10 +39,10 @@ class build_ext_subclass( build_ext ):
         try:
             if compiler_is_clang(self.compiler.compiler):
                 for e in self.extensions:
-                    e.extra_compile_args.append('-stdlib=libstdc++')
+                    #e.extra_compile_args.append('-stdlib=libc++')
                     e.extra_compile_args.append('-Wno-unused-function')
-                for e in self.extensions:
-                    e.extra_link_args.append('-stdlib=libstdc++')
+                #for e in self.extensions:
+                #    e.extra_link_args.append('-stdlib=libc++')
         except AttributeError:
             pass
         build_ext.build_extensions(self)

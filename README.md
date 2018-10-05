@@ -122,7 +122,11 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
-### Version 1.1.2 (2017-09-19) ###
+### Version 1.1.3 (2018-10-05) ###
+
+  * Removed setting stdlib for clang in setup.py - the default should do just fine.
+ 
+### Version 1.1.2 (2018-09-28) ###
 
   * Removed ez_setup.py that seems to be no longer maintained by setuptools maintainers.
     
@@ -134,7 +138,7 @@ The clarification of this remaining issue needs further investigation. Any comme
 ### Version 1.1.0 (2017-09-18) ###
 
   * fixed bug in cmp operator values that were not coherent on the python and C++ side
-  * support arbitrary strides for one dimensuional arrays
+  * support arbitrary strides for one dimensional arrays
   * Added test script
 
 ### Version 1.0.7 (2017-09-18) ###
