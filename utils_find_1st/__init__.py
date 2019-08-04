@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 from .find_1st import find_1st 
 
-version = (1,1,4,"rc0")
+version = (1,1,4)
 
 cmp_smaller    = -2
 cmp_smaller_eq = -1

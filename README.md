@@ -122,7 +122,7 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
-### Version 1.1.4.rc0 (2019-08-04) ###
+### Version 1.1.4 (2019-08-04) ###
 
   * added support for automatic installation of requirements
   * add and support pre-release tags in the version number
