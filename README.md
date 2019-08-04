@@ -122,6 +122,13 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.1.4.rc0 (2019-08-04) ###
+
+  * added support for automatic installation of requirements
+  * add and support pre-release tags in the version number
+  * use hashlib to calculate the README checksum.
+  * support testing via `make check`
+
 ### Version 1.1.3 (2018-10-05) ###
 
   * Removed setting stdlib for clang in setup.py - the default should do just fine.

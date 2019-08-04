@@ -1,7 +1,9 @@
 #! /usr/bin/env python
 
-import numpy as np 
-import utils_find_1st as utf1st
+import numpy as np
+
+import utf1st_inst_dir.utils_find_1st as utf1st
+
 for type in [np.float64, np.float32, np.int64, np.int32]:
 
     arr = np.arange(21, dtype=type)

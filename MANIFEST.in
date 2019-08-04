@@ -1,4 +1,7 @@
 include README
 include *.md
 include LONG_DESCR
-include ez_setup.py
+include requirements.txt
+include pyproject.toml
+
+

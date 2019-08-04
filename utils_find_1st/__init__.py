@@ -1,6 +1,8 @@
-from utils_find_1st.find_1st import find_1st
+from __future__ import absolute_import
 
-version = (1,1,3)
+from .find_1st import find_1st 
+
+version = (1,1,4,"rc0")
 
 cmp_smaller    = -2
 cmp_smaller_eq = -1

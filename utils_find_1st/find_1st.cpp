@@ -129,8 +129,8 @@ initfind_1st(void)
     if (module == NULL)
         INITERROR;
     struct module_state *st = GETSTATE(module);
-
-    st->error = PyErr_NewException("find_1st.Error", NULL, NULL);
+    char exception_text[16] = "find_1st.Error";
+    st->error = PyErr_NewException(exception_text, NULL, NULL);
     if (st->error == NULL) {
         Py_DECREF(module);
         INITERROR;
@@ -150,7 +150,7 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
                         &limit,
                         &op))  return NULL;
   if (NULL == input)  return NULL;
-  if (input->nd>1) {
+  if (PyArray_NDIM(input)>1) {
      PyErr_SetString(PyExc_ValueError,
          "cc_find_1st::Input array must be 1 dimensional.");
     return NULL;
@@ -162,22 +162,22 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
   switch(type) {
   case NPY_DOUBLE:
     ret = find_1st_templ(reinterpret_cast<double*>(PyArray_DATA(input)), static_cast<double>(limit),
-                         stride/sizeof(double), static_cast<long>(input->dimensions[0]), cmp_op(op));
+                         stride/sizeof(double), static_cast<long>(PyArray_DIMS(input)[0]), cmp_op(op));
     break;
   case NPY_FLOAT:
     ret = find_1st_templ(reinterpret_cast<float*>(PyArray_DATA(input)), 
                          static_cast<float>(limit), stride/sizeof(float),
-                         static_cast<long>(input->dimensions[0]), cmp_op(op));
+                         static_cast<long>(PyArray_DIMS(input)[0]), cmp_op(op));
     break;
   case NPY_INT64:
     ret = find_1st_templ(reinterpret_cast<long*>(PyArray_DATA(input)),
                          static_cast<long>(limit), stride/sizeof(long),
-                         static_cast<long>(input->dimensions[0]), cmp_op(op));
+                         static_cast<long>(PyArray_DIMS(input)[0]), cmp_op(op));
     break;
   case NPY_INT32:
     ret = find_1st_templ(reinterpret_cast<int*>(PyArray_DATA(input)),
                          static_cast<int>(limit), stride/sizeof(int),
-                         static_cast<long>(input->dimensions[0]), cmp_op(op));
+                         static_cast<long>(PyArray_DIMS(input)[0]), cmp_op(op));
     break;
   case NPY_BOOL:
     if((cmp_op(op) != cmp_equal) && (cmp_op(op) != cmp_not_equal)){
@@ -187,7 +187,7 @@ static PyObject *cc_find_1st(PyObject *dummy, PyObject *args) {
     }
     ret = find_1st_templ(reinterpret_cast<npy_bool*>(PyArray_DATA(input)),
                          static_cast<npy_bool>(limit), stride/sizeof(npy_bool),
-                         static_cast<long>(input->dimensions[0]), cmp_op(op));
+                         static_cast<long>(PyArray_DIMS(input)[0]), cmp_op(op));
     break;
   default:
 PyErr_SetString(PyExc_ValueError,
