@@ -122,6 +122,11 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.1.5 (2021-02-02) ###
+
+  * fixed problems with numpy dependency handling (thanks to xmatthias).
+    Now use oldest-supported-numpy instead of using the most recent numpy.
+
 ### Version 1.1.4 (2019-08-04) ###
 
   * added support for automatic installation of requirements
@@ -164,7 +169,7 @@ The clarification of this remaining issue needs further investigation. Any comme
 ### Version 1.0.4 (2017-05-31) ###
 
   * Fixed setup.py problems:
-  on the fly generation of LONG_DESCRPTION file.
+  on the fly generation of LONG_DESCRIPTION file.
 
 ### Version 1.0.3 (2017-05-31) ###
 
