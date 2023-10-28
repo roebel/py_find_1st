@@ -1,2 +1,2 @@
 numpy>=1.13.0
-
+setuptools>=68.0.0

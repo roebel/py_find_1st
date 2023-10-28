@@ -28,7 +28,7 @@ for type in [np.float64, np.float32, np.int64, np.int32]:
         raise RuntimeError("find_1st failed type {0}, stride -2".format(str(type)) )
     
 
-arr = np.concatenate((np.zeros(10, dtype=np.bool), np.ones(10,dtype=np.bool)))
+arr = np.concatenate((np.zeros(10, dtype=bool), np.ones(10,dtype=bool)))
     
 ind = utf1st.find_1st( arr, 1, utf1st.cmp_equal) 
 if (not arr[ind])  or arr[ind-1]  :

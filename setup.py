@@ -10,7 +10,6 @@ from distutils.command.build_ext import build_ext
 from distutils.command.sdist import sdist 
 import hashlib
 import io
-from pkg_resources import parse_version
 
 import numpy as np
 import os
@@ -73,12 +72,12 @@ with open('./requirements.txt') as f:
 
 # get _pysndfile version number
 for line in open("utils_find_1st/__init__.py") :
-    if "version" in line:
-        version = re.split('[()]', line)[1].replace(',','.').replace(',','-',1).replace('"','').replace(' ','')
+    if "version_str" in line:
+        version = re.split('=', line)[1].replace(',','.').replace(',','-',1).replace('"','').replace(' ','')
         break
 
 if sys.argv[1] == "get_version":
-    print(parse_version(version))
+    print(version)
     sys.exit(0)
 
 README_path       = os.path.join(os.path.dirname(__file__), 'README.md')
