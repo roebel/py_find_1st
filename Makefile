@@ -1,13 +1,28 @@
+package_dir = utils_find_1st
+package_prefix=py_find_1st
+
+PYTHON=python
+
+PYPROJECT = pyproject.toml
+VERSION = $(shell egrep '^ *version_str *=' $(package_dir)/__init__.py | cut -d'"' -f2)
+
+DIST_DIR = dist
+PLATFORM_TAG = $(shell $(PYTHON) -c "import sysconfig; print(sysconfig.get_platform().replace('-', '_').replace('.', '_'))")
+PYTHON_VERSION = $(shell $(PYTHON) -c "import sys; print('cp{}{}'.format(sys.version_info[0], sys.version_info[1]))")
+WHEEL_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION)-$(PYTHON_VERSION)-$(PYTHON_VERSION)-$(PLATFORM_TAG).whl
+SDIST_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION).tar.gz
+
+.PHONY: build sdist
+
+
 all: build
 
 PYTHON=python
 vv=$(shell $(PYTHON) setup.py get_version )
-.PHONY: build
 
-build : Makefile utils_find_1st/find_1st.cpp
-	$(PYTHON) setup.py build_ext 
 
-cythonize : 
+build : $(WHEEL_FILE) 
+sdist: $(SDIST_FILE)
 
 install:
 	pip install .
@@ -15,11 +30,18 @@ install:
 install-user:
 	pip install --user .
 
-clean:
-	$(PYTHON) setup.py clean -a
 
-sdist:
-	$(PYTHON) setup.py sdist
+$(WHEEL_FILE): Makefile utils_find_1st/__init__.py utils_find_1st/find_1st.cpp test/test_find_1st.py setup.py pyproject.toml 
+	$(PYTHON) -m build . --wheel
+
+
+clean:
+	rm -rf build $(WHEEL_FILE) $(SDIST_FILE)
+	rm -rf test/utf1st_inst_dir/*
+
+
+$(SDIST_FILE): Makefile utils_find_1st/__init__.py setup.py pyproject.toml utils_find_1st/find_1st.cpp test/test_find_1st.py 
+	$(PYTHON) -m build . --sdist
 	@echo now do
 	@echo twine upload -r test dist/py_find_1st-$(vv).tar.gz
 	@echo for testing and
@@ -29,6 +51,6 @@ sdist:
 	@echo pip install --no-cache-dir --extra-index-url https://test.pypi.org/simple/  py_find_1st==${vv} 
 
 check: build
-	pip install --no-build-isolation --no-deps --no-cache --upgrade --target test/utf1st_inst_dir .
+	pip install $(WHEEL_FILE) --find-links=dist --no-deps  --upgrade --target test/utf1st_inst_dir
 	touch test/utf1st_inst_dir/__init__.py
 	pwd; cd ./test; $(PYTHON) test_find_1st.py

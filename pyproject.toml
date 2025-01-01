@@ -1,3 +1,37 @@
 [build-system]
 # Minimum requirements for the build system to execute.
-requires = ["setuptools", "oldest-supported-numpy", "wheel"]  # PEP 508 specifications.
+requires = [
+         "setuptools >= 75.0",
+         "oldest-supported-numpy; python_version<='3.8'",
+         "numpy>=2.0; python_version>'3.8'",
+         "wheel"
+   ]  # PEP 508 specifications.
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py_find_1st"
+readme = { file = "README.md", content-type = "text/markdown" }
+dynamic = [ "version" ]
+classifiers = [
+            "Topic :: Software Development :: Libraries :: Python Modules",
+            "Programming Language :: Python :: 3",
+            "Development Status :: 5 - Production/Stable",
+            "License :: OSI Approved :: GNU General Public License (GPL)",
+            "Operating System :: MacOS :: MacOS X",
+            "Operating System :: POSIX :: Linux",
+            "Operating System :: Microsoft :: Windows",
+]
+description = "Numpy extension module for efficient search of first array index that compares true"
+authors = [
+    { name = "A. Roebel", email = "axel.roebel@ircam.fr" }
+]
+license = { text = "GPL" }
+dependencies = [
+    "numpy>=1.13.0,<2.0; python_version<='3.8'",
+    "numpy>=1.19.3,<3; python_version>'3.8'",
+]
+keywords = ["numpy","extension","find"]
+
+[project.urls]
+homepage = "https://github.com/roebel/py_find_1st"
+repository = "https://github.com/roebel/py_find_1st"

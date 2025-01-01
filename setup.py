@@ -5,9 +5,9 @@ from __future__ import print_function
 
 from setuptools import setup
 #from distutils.core import setup
-from distutils.extension import Extension
-from distutils.command.build_ext import build_ext
-from distutils.command.sdist import sdist 
+from setuptools.extension import Extension
+from setuptools.command.build_ext import build_ext
+from setuptools.command.sdist import sdist
 import hashlib
 import io
 
@@ -66,19 +66,6 @@ find_1st_ext = Extension("find_1st", ["utils_find_1st/find_1st.cpp"],
                          define_macros = [("NPY_NO_DEPRECATED_API", "NPY_1_13_API_VERSION") ])
 
 ext_modules=[find_1st_ext]
-
-with open('./requirements.txt') as f:
-    install_requires = [line.strip('\n') for line in f.readlines()]
-
-# get _pysndfile version number
-for line in open("utils_find_1st/__init__.py") :
-    if "version_str" in line:
-        version = re.split('=', line)[1].replace(',','.').replace(',','-',1).replace('"','').replace(' ','')
-        break
-
-if sys.argv[1] == "get_version":
-    print(version)
-    sys.exit(0)
 
 README_path       = os.path.join(os.path.dirname(__file__), 'README.md')
 README_cksum_path = os.path.join(os.path.dirname(__file__), 'README.md.cksum')    
@@ -146,32 +133,20 @@ class sdist_subclass(sdist) :
         update_long_descr()
         sdist.run(self)
 
+version = None
+# get version number form the siource file
+for line in open("utils_find_1st/__init__.py") :
+    if "version_str" in line:
+        version = re.split('=', line)[1].replace(',','.').replace(',','-',1).replace('"','').replace(' ','')
+        break
 
-setup( name = "py_find_1st",
-       version = version,
+
+setup( version = version,
        packages = ['utils_find_1st'],
        ext_package = 'utils_find_1st',
        ext_modules = ext_modules,
-       author = "A. Roebel",
-       install_requires= install_requires,
-       description = "Numpy extension module for efficient search of first array index that compares true",
        cmdclass = {'build_ext': build_ext_subclass, "sdist": sdist_subclass },
-       author_email = "axel.dot.roebel@ircam.dot.fr",
-        long_description = read_long_descr(),
-        license = "GPL",
-        url = "http://github.com/roebel/py_find_1st",
-        download_url = "https://github.com/roebel/py_find_1st/archive/v{0}.tar.gz".format(version),
-        keywords = "numpy,extension,find",
-        classifiers = [
-            "Topic :: Software Development :: Libraries :: Python Modules",
-            "Programming Language :: Python :: 3",
-            "Development Status :: 5 - Production/Stable",
-            "License :: OSI Approved :: GNU General Public License (GPL)",
-            "Operating System :: MacOS :: MacOS X",
-            "Operating System :: POSIX :: Linux",
-            "Operating System :: Microsoft :: Windows",
-        ],
-       
+       long_description = read_long_descr(),
        # don't install as zip file because those cannot be analyzed by pyinstaller
        zip_safe = False,
     )

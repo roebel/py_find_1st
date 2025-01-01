@@ -122,6 +122,10 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.1.7rc1 (2025-01-01) ###
+
+  * Updated build system to support numpy 2.0 and to avoid running setup.py directly.
+
 ### Version 1.1.6 (2023-10-28) ###
 
   * fixed test script for numpy > 1.20

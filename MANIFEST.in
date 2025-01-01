@@ -1,7 +1,6 @@
 include README
 include *.md
 include LONG_DESCR
-include requirements.txt
 include pyproject.toml
-
+include Makefile
 
