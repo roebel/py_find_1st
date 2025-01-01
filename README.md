@@ -1,6 +1,6 @@
 # py_find_1st
 
-py_find_1st  is a numpy extension that allows to find the first index into an 1D-array that
+py_find_1st is a numpy extension that allows to find the first index into an 1D-array that
 validates a boolean condition that can consist of a comparison operator and a limit value.
 
 ## Functionality
@@ -68,7 +68,7 @@ run test/test_find_1st.py which should display "all tests passed!"
 
 ### Benchmarking
 
-We can easily compare the runtime for the setup displayed before using the three lines
+We can easily compare the runtime for the setup displayed before executing the three lines
 
 <pre><code>
 In [6]: timeit ind = np.flatnonzero(rr < limit)[0]
@@ -126,7 +126,7 @@ In [35]: timeit ind = rr < limit
 3.31&mu;s &plusmn; 47.3ns per loop (mean &plusmn; std. dev. of 7 runs, 100000 loops each)
 </code></pre>
 
-and the find_1st operation in line 15 above, which would result in 7.7&mu;s`. The clarification of this remaining issue needs further investigation. Any comments are welcome.
+and the find_1st operation in line 15 above, which would result in 7.7&mu;s. The clarification of this remaining issue needs further investigation. Any comments are welcome.
 
 ## Changes
 
