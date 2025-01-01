@@ -68,13 +68,13 @@ run test/test_find_1st.py which should display "all tests passed!"
 
 ### Benchmarking ###
 
-We can easily compare the runtime for the setup displayed before using the three lines
+We can easily compare the runtime for the setup displayed before executing the three lines
 
     In [6]: timeit ind = np.flatnonzero(rr < limit)[0]
-    `1.69 $\mu$s $\pm$ 24.5ns` per loop (mean $\pm$ std. dev. of 7 runs, 1000000 loops each)
+    `1.69&mu;s $\pm$ 24.5ns` per loop (mean $\pm$ std. dev. of 7 runs, 1000000 loops each)
     
     In [4]: timeit ind = utf1st.find_1st(rr < limit, True, utf1st.cmp_equal)
-    1.13 $\mu$s $\pm$ 18.9 ns per loop (mean $\pm$  std. dev. of 7 runs, 1000000 loops each)
+    1.13 &mu;s $\pm$ 18.9 ns per loop (mean $\pm$  std. dev. of 7 runs, 1000000 loops each)
     
     In [5]: timeit ind = utf1st.find_1st(rr, limit, utf1st.cmp_smaller)
     270 ns $\pm$ 5.57 ns per loop (mean $\pm$ std. dev. of 7 runs, 1000000 loops each)
