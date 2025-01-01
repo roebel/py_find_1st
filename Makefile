@@ -22,6 +22,13 @@ PYTHON=python
 
 build : $(WHEEL_FILE) 
 sdist: $(SDIST_FILE)
+	@echo now do
+	@echo twine upload -r test dist/py_find_1st-$(VERSION).tar.gz
+	@echo for testing and
+	@echo twine upload -r pypi dist/py_find_1st-$(VERSION).tar.gz
+	@echo for final distribution
+	@echo in case you want to try a clean install from test.pypi.org use
+	@echo pip install --no-cache-dir --extra-index-url https://test.pypi.org/simple/  py_find_1st==${VERSION} 
 
 install:
 	pip install .
@@ -41,13 +48,6 @@ clean:
 
 $(SDIST_FILE): Makefile utils_find_1st/__init__.py setup.py pyproject.toml utils_find_1st/find_1st.cpp test/test_find_1st.py 
 	$(PYTHON) -m build . --sdist
-	@echo now do
-	@echo twine upload -r test dist/py_find_1st-$(VERSION).tar.gz
-	@echo for testing and
-	@echo twine upload -r pypi dist/py_find_1st-$(VERSION).tar.gz
-	@echo for final distribution
-	@echo in case you want to try a clean install from test.pypi.org use
-	@echo pip install --no-cache-dir --extra-index-url https://test.pypi.org/simple/  py_find_1st==${VERSION} 
 
 check: build
 	pip install $(WHEEL_FILE) --find-links=dist --no-deps  --upgrade --target test/utf1st_inst_dir

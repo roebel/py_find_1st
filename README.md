@@ -122,6 +122,10 @@ The clarification of this remaining issue needs further investigation. Any comme
 
 ## Changes ##
 
+### Version 1.1.7rc3 (2025-01-01) ###
+
+  * Avoid using numpy 2 for python <= 3.10
+
 ### Version 1.1.7rc2 (2025-01-01) ###
 
   * Updated build system to support numpy 2.0 and to avoid running setup.py directly.
