@@ -11,6 +11,7 @@ PLATFORM_TAG = $(shell $(PYTHON) -c "import sysconfig; print(sysconfig.get_platf
 PYTHON_VERSION = $(shell $(PYTHON) -c "import sys; print('cp{}{}'.format(sys.version_info[0], sys.version_info[1]))")
 WHEEL_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION)-$(PYTHON_VERSION)-$(PYTHON_VERSION)-$(PLATFORM_TAG).whl
 SDIST_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION).tar.gz
+NUMPYVERSION=$(shell $(PYTHON) -c "from importlib.metadata import version; print(version('numpy'));" )
 
 .PHONY: build sdist
 
