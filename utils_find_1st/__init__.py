@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 from .find_1st import find_1st 
 
-version_str = "1.1.7rc4"
+version_str = "1.1.7rc5"
 version = tuple(( int(ss) if ss.isdigit() else ss for ss in version_str.split('.')))
 
 cmp_smaller    = -2
