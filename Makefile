@@ -38,7 +38,7 @@ install-user:
 	pip install --user .
 
 
-$(WHEEL_FILE): Makefile utils_find_1st/__init__.py utils_find_1st/find_1st.cpp test/test_find_1st.py setup.py pyproject.toml 
+$(WHEEL_FILE): Makefile README.md utils_find_1st/__init__.py utils_find_1st/find_1st.cpp test/test_find_1st.py setup.py pyproject.toml 
 	$(PYTHON) -m build . --wheel
 
 
@@ -47,7 +47,7 @@ clean:
 	rm -rf test/utf1st_inst_dir/*
 
 
-$(SDIST_FILE): Makefile utils_find_1st/__init__.py setup.py pyproject.toml utils_find_1st/find_1st.cpp test/test_find_1st.py 
+$(SDIST_FILE): Makefile README.md utils_find_1st/__init__.py setup.py pyproject.toml utils_find_1st/find_1st.cpp test/test_find_1st.py 
 	$(PYTHON) -m build . --sdist
 
 check: build
