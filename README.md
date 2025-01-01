@@ -58,7 +58,7 @@ and need to compare the full array - but on case that there are matches np.flatn
 run through the full array and needs to create a result array with size that depends o the number of matches
 while find_1st only produces a scalar result and only needs to compare the array until the first match is found.
 
-Depending on the size of the   array and the number of matches the speed difference can be very significant
+Depending on the size of the array and the number of matches the speed difference can be very significant
 (easily > factor 10)
 
 
@@ -74,7 +74,7 @@ We can easily compare the runtime for the setup displayed before executing the t
 1.69&mu;s &plusmn; 24.5ns per loop (mean &plusmn; std. dev. of 7 runs, 1000000 loops each)
     
 In [4]: timeit ind = utf1st.find_1st(rr limit, True, utf1st.cmp_equal)
-1.13&mu;s &plusmn; 18.9ns per loop (mean &plusmn;  std. dev. of 7 runs, 1000000 loops each)
+1.13&mu;s &plusmn; 18.9ns per loop (mean &plusmn; std. dev. of 7 runs, 1000000 loops each)
     
 In [5]: timeit ind = utf1st.find_1st(rr, limit, utf1st.cmp_smaller)
 270ns &plusmn; 5.57ns per loop (mean &plusmn; std. dev. of 7 runs, 1000000 loops each)
