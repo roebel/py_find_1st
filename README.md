@@ -70,8 +70,7 @@ run test/test_find_1st.py which should display "all tests passed!"
 
 We can easily compare the runtime for the setup displayed before executing the three lines
 
-<pre><code>
-In [6]: timeit ind = np.flatnonzero(rr < limit)[0]
+<pre><code>In [6]: timeit ind = np.flatnonzero(rr < limit)[0]
 1.69&mu;s &plusmn; 24.5ns per loop (mean &plusmn; std. dev. of 7 runs, 1000000 loops each)
     
 In [4]: timeit ind = utf1st.find_1st(rr limit, True, utf1st.cmp_equal)
@@ -91,8 +90,7 @@ array, and therefore performance should be similar. We can benchmark this case b
 the limit such that it does never fit. For the small array sizes we used so far
 the overhead of np.flanonzero is dominating the costs as can be seen in the following.
 
-<pre><code>
-In [9]: limit = -1000.
+<pre><code>In [9]: limit = -1000.
 In [10]: timeit ind = np.flatnonzero(rr < limit)
 1.56&mu;s &plusmn; 13.8ns per loop (mean &plusmn; std. dev. of 7 runs, 1000000 loops each)
 
@@ -105,8 +103,7 @@ In [12]: timeit ind = utf1st.find_1st(rr, limit, utf1st.cmp_smaller)
 
 For a significantly larger array size costs become more comparable
 
-<pre><code>
-rr= np.random.randn(10000)
+<pre><code>rr= np.random.randn(10000)
 In [13]: timeit ind = np.flatnonzero(rr < limit)
 4.87&mu;s &plusmn; 101ns per loop (mean &plusmn; std. dev. of 7 runs, 100000 loops each)
 
@@ -121,8 +118,7 @@ Which demonstrates that even in this case the find_1st extension is more efficie
 
 This result is nevertheless a bit higher than expected from the sum of the simple boolean comparison
 
-<pre><code>
-In [35]: timeit ind = rr < limit
+<pre><code>In [35]: timeit ind = rr < limit
 3.31&mu;s &plusmn; 47.3ns per loop (mean &plusmn; std. dev. of 7 runs, 100000 loops each)
 </code></pre>
 
