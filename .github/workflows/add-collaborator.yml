@@ -1,0 +1,69 @@
+name: Add Collaborator
+
+# Invite an existing GitHub user as a repository collaborator.
+#
+# Prerequisites:
+#   This workflow requires a Personal Access Token (PAT) stored as the
+#   repository secret COLLABORATOR_INVITE_TOKEN.  The PAT must be issued by
+#   a repository admin and needs only the `repo` scope (or a fine-grained
+#   token with the "Administration" repository permission set to "Read and
+#   write").  The default GITHUB_TOKEN cannot add collaborators because it
+#   lacks repository-administration write access.
+#
+# Usage:
+#   Go to Actions → Add Collaborator → Run workflow, supply the GitHub
+#   username and the desired permission level, then click "Run workflow".
+
+on:
+  workflow_dispatch:
+    inputs:
+      username:
+        description: 'GitHub username to invite as collaborator'
+        required: true
+        type: string
+      permission:
+        description: 'Permission level for the collaborator'
+        required: true
+        default: 'push'
+        type: choice
+        options:
+          - pull
+          - triage
+          - push
+          - maintain
+          - admin
+
+jobs:
+  add-collaborator:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - name: Invite collaborator
+        uses: actions/github-script@v7
+        env:
+          INPUT_USERNAME: ${{ github.event.inputs.username }}
+          INPUT_PERMISSION: ${{ github.event.inputs.permission }}
+        with:
+          # A PAT with `repo` scope (or fine-grained "Administration: write")
+          # is required; GITHUB_TOKEN does not have this permission.
+          github-token: ${{ secrets.COLLABORATOR_INVITE_TOKEN }}
+          script: |
+            const username = process.env.INPUT_USERNAME;
+            const permission = process.env.INPUT_PERMISSION;
+            try {
+              await github.rest.repos.addCollaborator({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                username: username,
+                permission: permission
+              });
+              console.log(`Invitation sent to ${username} with ${permission} permission.`);
+            } catch (err) {
+              if (err.status === 404) {
+                core.setFailed(`User '${username}' not found on GitHub.`);
+              } else if (err.status === 422) {
+                core.setFailed(`Could not invite '${username}': ${err.message} (user may already be a collaborator).`);
+              } else {
+                core.setFailed(`Failed to invite '${username}': ${err.message}`);
+              }
+            }
