@@ -128,6 +128,9 @@ initfind_1st(void)
 
     if (module == NULL)
         INITERROR;
+#ifdef Py_GIL_DISABLED
+    PyUnstable_Module_SetGIL(module, Py_MOD_GIL_NOT_USED);
+#endif
     struct module_state *st = GETSTATE(module);
     char exception_text[16] = "find_1st.Error";
     st->error = PyErr_NewException(exception_text, NULL, NULL);
