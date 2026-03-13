@@ -126,6 +126,10 @@ and the find_1st operation in line 15 above, which would result in 7.7&mu;s. The
 
 ## Changes
 
+### Version 1.1.8 (2026-03-13)
+
+  * Support free-threaded python 3.14 interpreter
+
 ### Version 1.1.7 (2025-01-01)
 
   * Updated build system to support numpy 2.0 and to avoid running setup.py directly.
@@ -199,7 +203,7 @@ and the find_1st operation in line 15 above, which would result in 7.7&mu;s. The
  
 ## Copyright
 
-Copyright (C) 2017 IRCAM
+Copyright (C) 2017-2026 IRCAM
 
 ## License 
 
