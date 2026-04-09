@@ -9,7 +9,8 @@ VERSION = $(shell egrep '^ *version_str *=' $(package_dir)/__init__.py | cut -d'
 DIST_DIR = dist
 PLATFORM_TAG = $(shell $(PYTHON) -c "import sysconfig; print(sysconfig.get_platform().replace('-', '_').replace('.', '_'))")
 PYTHON_VERSION = $(shell $(PYTHON) -c "import sys; print('cp{}{}'.format(sys.version_info[0], sys.version_info[1]))")
-WHEEL_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION)-$(PYTHON_VERSION)-$(PYTHON_VERSION)-$(PLATFORM_TAG).whl
+PYTHON_ABI = $(shell $(PYTHON) -c "import sysconfig; print(sysconfig.get_config_var('abiflags'))")
+WHEEL_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION)-$(PYTHON_VERSION)-$(PYTHON_VERSION)${PYTHON_ABI}-$(PLATFORM_TAG).whl
 SDIST_FILE = $(DIST_DIR)/$(package_prefix)-$(VERSION).tar.gz
 NUMPYVERSION=$(shell $(PYTHON) -c "from importlib.metadata import version; print(version('numpy'));" )
 
