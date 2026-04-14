@@ -161,6 +161,12 @@ investigation. Any comments are welcome.
 Changes
 -------
 
+Version 1.1.9 (2026-04-14)
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+-  Fix ABI part of wheel name in Makefile when using free-threaded
+   python 3.14
+
 Version 1.1.8 (2026-03-13)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 

@@ -126,6 +126,10 @@ and the find_1st operation in line 15 above, which would result in 7.7&mu;s. The
 
 ## Changes
 
+### Version 1.1.9 (2026-04-14)
+
+  * Fix ABI part of wheel name in Makefile when using free-threaded python 3.14
+
 ### Version 1.1.8 (2026-03-13)
 
   * Support free-threaded python 3.14 interpreter
